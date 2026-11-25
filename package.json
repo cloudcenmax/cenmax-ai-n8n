@@ -1,6 +1,6 @@
 {
-  "name": "@cenmax-ai/n8n-nodes-cenmax-ai",
-  "version": "0.1.0",
+  "name": "@cenmax/n8n-nodes-cenmax-ai",
+  "version": "0.1.1",
   "description": "Cenmax AI subscription model node for self-hosted n8n",
   "license": "MIT",
   "keywords": ["n8n-community-node-package", "cenmax-ai", "oauth", "language-model"],

@@ -12,10 +12,18 @@ The Cenmax AI service must register public client `cenmax-n8n` with device-code 
 
 The qualified installation uses n8n's custom-extension loader. It exports the `Cenmax AI Chat Model` node and `Cenmax AI OAuth` credential. n8n **2.49.5** was tested in its official Linux ARM64 image with Node.js **26.13.0**, `@langchain/openai` **1.8.5**, and `@langchain/core` **1.5.1**. Both LangChain runtime dependencies are pinned explicitly; a host's older core package is not sufficient. See [qualification](QUALIFICATION.md) for acceptance checks and limits.
 
-Download and extract the npm archive attached to this repository's GitHub release into a dedicated directory on your n8n host, then install its dependencies:
+Install the npm package into a dedicated custom-extension directory on your n8n host:
 
 ```sh
-tar -xzf cenmax-ai-n8n-nodes-cenmax-ai-0.1.0.tgz
+npm install --prefix ./cenmax-n8n-custom --omit=dev --ignore-scripts --legacy-peer-deps @cenmax/n8n-nodes-cenmax-ai@0.1.1
+```
+
+Set `N8N_CUSTOM_EXTENSIONS` to the absolute path of `cenmax-n8n-custom/node_modules/@cenmax/n8n-nodes-cenmax-ai` and restart n8n. Run the helper from that installed directory as the n8n process user. This is the qualified custom-extension loading route; publishing to npm does not make the node verified or Cloud-compatible.
+
+Alternatively, download and extract the archive attached to this repository's GitHub release into a dedicated directory, then install its dependencies:
+
+```sh
+tar -xzf cenmax-n8n-nodes-cenmax-ai-0.1.1.tgz
 cd package
 npm install --omit=dev --ignore-scripts --legacy-peer-deps
 ```
