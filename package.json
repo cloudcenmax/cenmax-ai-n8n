@@ -1,0 +1,23 @@
+{
+  "name": "@cenmax-ai/n8n-nodes-cenmax-ai",
+  "version": "0.1.0",
+  "description": "Cenmax AI subscription model node for self-hosted n8n",
+  "license": "MIT",
+  "keywords": ["n8n-community-node-package", "cenmax-ai", "oauth", "language-model"],
+  "files": ["nodes", "credentials", "lib", "examples", "README.md", "QUALIFICATION.md", "DISCOVERY.md", "LICENSE", "SECURITY.md"],
+  "bin": {"cenmax-n8n": "lib/cli.mjs"},
+  "scripts": {"test": "node --test test/*.test.mjs"},
+  "engines": {"node": ">=24.11.0"},
+  "dependencies": {"@langchain/openai": "1.8.5", "@langchain/core": "1.5.1"},
+  "peerDependencies": {"n8n-workflow": ">=1.100.0 <3.0.0"},
+  "author": "Cenmax AI",
+  "publishConfig": {"access": "public"},
+  "repository": {"type": "git", "url": "git+https://github.com/cloudcenmax/cenmax-ai-n8n.git"},
+  "bugs": {"url": "https://github.com/cloudcenmax/cenmax-ai-n8n/issues"},
+  "homepage": "https://github.com/cloudcenmax/cenmax-ai-n8n#readme",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": ["credentials/CenmaxAiOAuth.credentials.js"],
+    "nodes": ["nodes/CenmaxAiChatModel.node.js"]
+  }
+}

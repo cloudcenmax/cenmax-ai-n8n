@@ -1,0 +1,16 @@
+{
+  "name": "Cenmax AI calculator agent",
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "nodes": [
+    {"id": "start", "name": "Start", "type": "n8n-nodes-base.manualTrigger", "typeVersion": 1, "position": [0, 0], "parameters": {}},
+    {"id": "agent", "name": "Cenmax AI Agent", "type": "@n8n/n8n-nodes-langchain.agent", "typeVersion": 3.1, "position": [240, 0], "parameters": {"promptType": "define", "text": "Use the Calculator tool exactly once to multiply 719 by 83, then reply with the numeric result.", "options": {"systemMessage": "You are a helpful Cenmax AI assistant. Use the supplied tool to verify the calculation.", "maxIterations": 4, "returnIntermediateSteps": true, "enableStreaming": true}}},
+    {"id": "model", "name": "Cenmax AI Chat Model", "type": "CUSTOM.cenmaxAiChatModel", "typeVersion": 1, "position": [140, 240], "parameters": {"model": "worker", "temperature": 0.2, "maxTokens": 512}},
+    {"id": "tool", "name": "Calculator", "type": "@n8n/n8n-nodes-langchain.toolCalculator", "typeVersion": 1, "position": [400, 240], "parameters": {}}
+  ],
+  "connections": {
+    "Start": {"main": [[{"node": "Cenmax AI Agent", "type": "main", "index": 0}]]},
+    "Cenmax AI Chat Model": {"ai_languageModel": [[{"node": "Cenmax AI Agent", "type": "ai_languageModel", "index": 0}]]},
+    "Calculator": {"ai_tool": [[{"node": "Cenmax AI Agent", "type": "ai_tool", "index": 0}]]}
+  }
+}
